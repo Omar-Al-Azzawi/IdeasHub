@@ -1,6 +1,11 @@
+import Landing from '@/components/Landing';
 import { useTranslations } from 'next-intl';
 
 export default function Index() {
     const t = useTranslations('Index');
-    return <h1>{t('title')}</h1>;
+    return (
+        <main className="flex min-h-screen flex-col mt-20">
+            <Landing />
+        </main>
+    );
 }

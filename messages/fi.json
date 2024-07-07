@@ -1,5 +1,10 @@
 {
-    "Index": {
-        "title": "moi world!"
+    "pages": {
+        "home": {
+            "title": "Jaa ideasi, inspiroi maailmaa",
+            "sub_title": "Ideanjakoalustamme avulla voit yhdistää samanhenkisiä ihmisiä, tehdä yhteistyötä innovatiivisissa projekteissa ja toteuttaa ideasi.",
+            "new_idea": "Uusi idea",
+            "learn_more": "Lue lisää"
+        }
     }
 }

@@ -1,5 +1,10 @@
 {
-    "Index": {
-        "title": "Hello world!"
+    "pages": {
+        "home": {
+            "title": "Share Your Ideas, Inspire the World",
+            "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",
+            "new_idea": "New idea",
+            "learn_more": "Learn More"
+        }
     }
 }
