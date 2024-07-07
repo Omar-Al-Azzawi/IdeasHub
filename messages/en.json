@@ -1,4 +1,7 @@
 {
+    "action": {
+        "signup": "Sign up"
+    },
     "pages": {
         "home": {
             "title": "Share Your Ideas, Inspire the World",
@@ -6,5 +9,15 @@
             "new_idea": "New idea",
             "learn_more": "Learn More"
         }
+    },
+    "navbar": {
+        "bookmarks": "Bookmarks",
+        "home": "Home",
+        "ideas": "Ideas",
+        "logout": "Sign out",
+        "my_account": "My Account",
+        "profile": "Profile",
+        "signup": "Sign up",
+        "login": "Login"
     }
 }

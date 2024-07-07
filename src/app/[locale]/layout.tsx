@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/providers/theme-provider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import "./globals.css";
+import Navbar from '@/components/navbar/Navbar';
 
 export default async function LocaleLayout({
     children,
@@ -22,6 +23,7 @@ export default async function LocaleLayout({
                         enableSystem
                         disableTransitionOnChange
                     >
+                        <Navbar />
                         {children}
                     </ThemeProvider>
                 </NextIntlClientProvider>

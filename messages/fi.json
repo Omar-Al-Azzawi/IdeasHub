@@ -1,4 +1,7 @@
 {
+    "action": {
+        "signup": "Rekisteröidy"
+    },
     "pages": {
         "home": {
             "title": "Jaa ideasi, inspiroi maailmaa",
@@ -6,5 +9,15 @@
             "new_idea": "Uusi idea",
             "learn_more": "Lue lisää"
         }
+    },
+    "navbar": {
+        "bookmarks": "Kirjanmerkit",
+        "home": "Koti",
+        "ideas": "Ideat",
+        "logout": "Kirjaudu ulos",
+        "my_account": "Oma tili",
+        "profile": "Profiili",
+        "signup": "Rekisteröidy",
+        "login": "Kirjaudu sisään"
     }
 }
