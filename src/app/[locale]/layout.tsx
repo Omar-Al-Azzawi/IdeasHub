@@ -1,8 +1,11 @@
 import { ThemeProvider } from '@/providers/theme-provider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/Footer'
+
+import "./globals.css";
 
 export default async function LocaleLayout({
     children,
@@ -25,6 +28,8 @@ export default async function LocaleLayout({
                     >
                         <Navbar />
                         {children}
+                        <Footer />
+                        <Toaster />
                     </ThemeProvider>
                 </NextIntlClientProvider>
             </body>

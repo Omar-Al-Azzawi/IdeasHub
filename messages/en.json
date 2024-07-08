@@ -1,6 +1,11 @@
 {
     "action": {
-        "signup": "Sign up"
+        "signup": "Sign up",
+        "login": "Log in",
+        "logging": "Logging...",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving..."
     },
     "pages": {
         "home": {
@@ -19,5 +24,24 @@
         "profile": "Profile",
         "signup": "Sign up",
         "login": "Login"
+    },
+    "forms": {
+        "signup": {
+            "title": "Sign up to create your account",
+            "name": "Name",
+            "email": "Email",
+            "email_placeholder": "Write your email",
+            "password": "Password",
+            "password_placeholder": "Write your password",
+            "you_have_account": "You have an account "
+        },
+        "login": {
+            "title": "Sign in to your account",
+            "email": "Email",
+            "email_placeholder": "Write your email",
+            "password": "Password",
+            "password_placeholder": "Write your password",
+            "do_not_have_account": "Don't have an account"
+        }
     }
 }

@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowRight, Bookmark, User } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
 import Link from "next/link";
 
 const ActionItems = () => {
