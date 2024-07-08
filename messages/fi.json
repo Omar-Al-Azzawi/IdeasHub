@@ -1,13 +1,18 @@
 {
     "action": {
-        "signup": "Rekisteröidy"
+        "signup": "Rekisteröidy",
+        "login": "Kirjaudu sisään",
+        "logging": "Kirjaudutaan...",
+        "cancel": "Peruuta",
+        "save": "Tallenna",
+        "saving": "Tallennetaan..."
     },
     "pages": {
         "home": {
             "title": "Jaa ideasi, inspiroi maailmaa",
-            "sub_title": "Ideanjakoalustamme avulla voit yhdistää samanhenkisiä ihmisiä, tehdä yhteistyötä innovatiivisissa projekteissa ja toteuttaa ideasi.",
+            "sub_title": "Ideoiden jakamisalustamme antaa sinulle mahdollisuuden yhdistää samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja tuoda ideasi eloon.",
             "new_idea": "Uusi idea",
-            "learn_more": "Lue lisää"
+            "learn_more": "Lisätietoja"
         }
     },
     "navbar": {
@@ -19,5 +24,24 @@
         "profile": "Profiili",
         "signup": "Rekisteröidy",
         "login": "Kirjaudu sisään"
+    },
+    "forms": {
+        "signup": {
+            "title": "Rekisteröidy luodaksesi tilisi",
+            "name": "Nimi",
+            "email": "Sähköposti",
+            "email_placeholder": "Kirjoita sähköpostisi",
+            "password": "Salasana",
+            "password_placeholder": "Kirjoita salasanasi",
+            "you_have_account": "Sinulla on tili"
+        },
+        "login": {
+            "title": "Kirjaudu tilillesi",
+            "email": "Sähköposti",
+            "email_placeholder": "Kirjoita sähköpostisi",
+            "password": "Salasana",
+            "password_placeholder": "Kirjoita salasanasi",
+            "do_not_have_account": "Eikö sinulla ole tiliä"
+        }
     }
 }
