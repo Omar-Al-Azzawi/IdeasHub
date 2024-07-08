@@ -1,11 +1,12 @@
 import Landing from "@/components/Landing";
-import { useTranslations } from "next-intl";
+import { getUser } from "@/lib/lucia";
 
-export default function Index() {
-    const t = useTranslations();
+export default async function Page() {
+    const user = await getUser()
+
     return (
         <main className="flex min-h-screen flex-col mt-20">
-            <Landing />
+            <Landing user={user} />
         </main>
     );
 }
