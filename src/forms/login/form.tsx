@@ -18,6 +18,7 @@ import { type LoginFormData, LoginSchema } from "./schema";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import GoogleOAuthButton from "@/components/GoogleOAuthButton";
 
 const LoginForm = () => {
     const localActive = useLocale();
@@ -86,6 +87,7 @@ const LoginForm = () => {
                             </Link>
                         </span>
                     </div>
+                    <GoogleOAuthButton />
                 </form>
             </Form>
         </div>

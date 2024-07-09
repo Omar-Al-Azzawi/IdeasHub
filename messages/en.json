@@ -47,7 +47,8 @@
             "email_placeholder": "Write your email",
             "password": "Password",
             "password_placeholder": "Write your password",
-            "do_not_have_account": "Don't have an account"
+            "do_not_have_account": "Don't have an account",
+            "google": "Continue with Google!"
         }
     }
 }

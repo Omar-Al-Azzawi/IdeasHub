@@ -26,7 +26,7 @@ const loginAction = async (loginFormData: LoginFormData) => {
             return { success: false, message: "Invalid email or password" };
         }
 
-        const passwordMatch = await new Argon2id().verify(user.password, result.data.password,)
+        const passwordMatch = await new Argon2id().verify(String(user.password), result.data.password,)
         if (!passwordMatch) {
             return { success: false, error: "Invalid Credentials!" }
         }
