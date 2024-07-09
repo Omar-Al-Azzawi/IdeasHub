@@ -115,7 +115,7 @@ const IdeaCard: React.FC<Props> = ({ user, idea }) => {
     };
 
     const authorName = idea?.author?.name ?? "Unknown";
-    const authorInitials = authorName.split(" ").map((name) => name[0]).join(" ");
+    const authorInitials = authorName.split(" ").map((name) => name[0]).join("");
 
     return (
         <article className="overflow-hidden rounded-lg flex flex-col h-70 backdrop-blur-sm p-2 border">
@@ -131,14 +131,14 @@ const IdeaCard: React.FC<Props> = ({ user, idea }) => {
             <div className="p-2 flex justify-between">
                 <Link href={`/${activeLocale}/profile/${idea.author.id}`}>
                     <div className="flex items-center">
-                        <Avatar className="h-6 w-6">
+                        <Avatar className="h-8 w-8">
                             <AvatarImage src={idea.author.imagePath || ""} />
                             <AvatarFallback>{authorInitials}</AvatarFallback>
                         </Avatar>
                         <p className="text-sm font-semibold text-gray-400 p-2 hover:text-teal-500">{idea?.author?.name}</p>
                     </div>
                 </Link>
-                {user.id !== idea.author.id ? (
+                {user && user.id !== idea.author.id ? (
                     <div>
                         <Button onClick={handleFollow} className="p-0 text-teal-500" variant="ghost">
                             {optimisticFollow ? <Check className="mr-1" size={14} /> : <Plus className="mr-1" size={14} />}

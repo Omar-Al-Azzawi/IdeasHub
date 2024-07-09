@@ -1,5 +1,7 @@
 {
     "action": {
+        "add": "Lisää",
+        "adding": "Lisätään...",
         "signup": "Rekisteröidy",
         "login": "Kirjaudu sisään",
         "logging": "Kirjaudutaan...",
@@ -26,6 +28,10 @@
         "login": "Kirjaudu sisään"
     },
     "forms": {
+        "add_comment": {
+            "add_comment": "Lisää kommentti",
+            "comment_placeholder": "Kirjoita kommenttisi tähän..."
+        },
         "signup": {
             "title": "Rekisteröidy luodaksesi tilisi",
             "name": "Nimi",

@@ -1,5 +1,7 @@
 {
     "action": {
+        "add": "Add",
+        "adding": "Adding...",
         "signup": "Sign up",
         "login": "Log in",
         "logging": "Logging...",
@@ -26,6 +28,10 @@
         "login": "Login"
     },
     "forms": {
+        "add_comment": {
+            "add_comment": "Add comment",
+            "comment_placeholder": "Type your comment here..."
+        },
         "signup": {
             "title": "Sign up to create your account",
             "name": "Name",
