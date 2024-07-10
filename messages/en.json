@@ -10,6 +10,11 @@
         "saving": "Saving..."
     },
     "pages": {
+        "bookmarks": {
+            "title": "My bookmarks",
+            "empty_title": "Your bookmark list is empty.",
+            "empty_sub_title": "Go back to your Ideas and bookmark Idea you would like to keep or check later. Each Idea you bookmark will be stored here."
+        },
         "home": {
             "title": "Share Your Ideas, Inspire the World",
             "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",

@@ -10,6 +10,10 @@
         "saving": "Tallennetaan..."
     },
     "pages": {
+        "bookmarks": {
+            "title": "Kirjanmerkkilistasi on tyhjä.",
+            "sub_title": "Palaa ideoihisi ja lisää kirjanmerkki niihin, jotka haluat säilyttää tai tarkistaa myöhemmin. Kaikki lisäämäsi kirjanmerkit tallennetaan tänne."
+        },
         "home": {
             "title": "Jaa ideasi, inspiroi maailmaa",
             "sub_title": "Ideoiden jakamisalustamme antaa sinulle mahdollisuuden yhdistää samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja tuoda ideasi eloon.",
