@@ -1,34 +1,29 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { FormState } from "@/types/Form";
 import { PrismaClient } from "@prisma/client";
 import { uploadImage } from "@/lib/upload-image";
-import { NewIdeaSchema } from "./schema"
-import { getUser } from "@/lib/lucia";
-import { getTranslations } from "next-intl/server";
+import { type EditIdeaFormData, EditIdeaSchema } from "./schema"
+import { revalidatePath } from "next/cache";
+import { FormState } from "@/types/Form";
+import { getLocale, getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
-const newIdeaAction = async (
-    activeLocale: string,
-    content: any,
+const editIdeaAction = async (
+    id: number,
+    content: string,
     tags: string[],
     prevState: FormState,
     formData: FormData,
 ) => {
     const timestamp = Date.now();
+    const activeLocale = await getLocale()
     const t = await getTranslations()
 
     try {
-        const user = await getUser()
-        if (!user) {
-            return { success: false, message: t("action.error_auth_user") };
-        }
-
         const title = formData.get("title") as string;
         const image = formData.get("imagePath") as File | null;
-        const published = formData.get("published") === "on";
+        const published = formData.get("published") === 'true';
 
         let imagePath = null;
         if (image) {
@@ -40,41 +35,39 @@ const newIdeaAction = async (
             contentParse = JSON.parse(content);
         }
 
-        const data = {
+        const data: Partial<EditIdeaFormData> = {
             title,
             content: contentParse,
-            imagePath: imagePath ?? null,
+            imagePath: imagePath ?? undefined,
             published,
-            authorId: user?.id,
             tags,
         };
 
-        const result = NewIdeaSchema.safeParse(data);
-
+        const result = EditIdeaSchema.safeParse(data);
         if (!result.success) {
-            return { success: false, message: t("action.error_validation"), timestamp };
+            return { success: false, message: "Validation failed", timestamp };
         }
 
-        await prisma.idea.create({
+        await prisma.idea.update({
+            where: { id },
             data: result.data,
         });
 
         const redirect = `/${activeLocale}/ideas`
 
-        revalidatePath("/");
+        revalidatePath('/')
         return {
             success: true,
-            message: t('forms.idea.create_success_msg'),
+            message: t('forms.idea.edit_success_msg'),
             timestamp,
             data: {
                 redirect
             }
         };
-
     } catch (error) {
-        console.error("Failed creating idea", error);
-        return { success: false, message: t('forms.idea.create_error_msg'), timestamp };
+        console.error("Failed editing idea", error);
+        return { success: false, message: t('forms.idea.edit_error_msg'), timestamp };
     }
 };
 
-export { newIdeaAction };
+export { editIdeaAction };

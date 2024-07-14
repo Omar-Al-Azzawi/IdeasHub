@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import {
     Form,
-    FormControl,
     FormField,
     FormItem,
     FormLabel,
@@ -13,33 +12,45 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useFormState } from "react-dom";
-import { newIdeaAction } from "./action";
+import { editIdeaAction } from "./action";
 import SubmitButton from "@/components/SubmitButton";
 import RTE from "@/components/RTE/rich-text-editor";
 import TagInput from "@/components/TagSelect";
-import { JSONContent } from "@tiptap/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type EditIdeaFormData, EditIdeaSchema } from "./schema"
 import { useToastMessage } from "@/hooks/useToastMsg";
 import { useRedirect } from "@/hooks/useRedirect";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+
+type Props = {
+    idea: any
+};
 
 const initialState = {
     success: true,
     message: '',
 }
 
-const NewIdeaForm = () => {
-    const activeLocale = useLocale()
+const EditIdeaForm = ({ idea }: Props) => {
     const t = useTranslations()
-    const form = useForm();
-    const [content, setContent] = useState<null | JSONContent>(null);
-    const [tags, setTags] = useState<string[]>([]);
-    const newIdea = newIdeaAction.bind(null, activeLocale, JSON.stringify(content), tags);
-    const [state, formAction] = useFormState(newIdea, initialState);
+    const form = useForm<EditIdeaFormData>({
+        resolver: zodResolver(EditIdeaSchema),
+        defaultValues: {
+            title: idea.title,
+            content: idea.content,
+            tags: idea.tags,
+            published: idea.published
+        },
+    })
+    const [content, setContent] = useState("");
+    const [tags, setTags] = useState<string[]>(idea.tags);
+    const editIdea = editIdeaAction.bind(null, idea.id, JSON.stringify(content), tags);
+    const [state, formAction] = useFormState(editIdea, initialState);
 
-    useToastMessage(state);
-    useRedirect(state);
+    useToastMessage(state)
+    useRedirect(state)
 
-    const handleChange = (data: JSONContent) => {
+    const handleChange = (data: string) => {
         setContent(data);
     };
 
@@ -47,7 +58,7 @@ const NewIdeaForm = () => {
         <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-18">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">
-                    {t('forms.idea.create_title')}
+                    {t('forms.idea.edit_title')}
                 </h2>
             </div>
             <Form {...form}>
@@ -68,7 +79,7 @@ const NewIdeaForm = () => {
                         name="content"
                         render={({ field }) => (
                             <FormItem>
-                                <RTE onChange={handleChange} />
+                                <RTE onChange={handleChange} content={idea.content} />
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -99,11 +110,9 @@ const NewIdeaForm = () => {
                         control={form.control}
                         name="published"
                         render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Checkbox {...field} />
-                                </FormControl>
-                                <FormLabel className="text-Black mx-2">{t('forms.idea.publish')}</FormLabel>
+                            <FormItem className="flex items-center space-x-2">
+                                <Checkbox {...field} value={idea.published} defaultChecked={idea.published} />
+                                <FormLabel className="align-middle">{t('forms.idea.publish')}</FormLabel>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -117,4 +126,4 @@ const NewIdeaForm = () => {
     );
 };
 
-export default NewIdeaForm;
+export default EditIdeaForm;

@@ -49,12 +49,15 @@
             "title": "Kirjaudu tilillesi",
             "user_not_found": "Käyttäjää ei löydy"
         },
-        "new_idea": {
-            "error_msg": "Idean luominen epäonnistui",
-            "form_title": "Kirjoita ideasi",
+        "idea": {
+            "create_title": "Kirjoita ideasi",
+            "create_error_msg": "Idean luominen epäonnistui",
+            "create_success_msg": "Idea luotu onnistuneesti",
+            "edit_title": "Muokkaa ideaasi",
+            "edit_error_msg": "Idean muokkaus epäonnistui",
+            "edit_success_msg": "Idea muokattu onnistuneesti",
             "image": "Kuva",
             "publish": "Julkaise",
-            "success_msg": "Idea luotu onnistuneesti",
             "tags": "Tunnisteet",
             "title": "Otsikko"
         },

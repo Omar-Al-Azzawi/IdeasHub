@@ -49,12 +49,15 @@
             "title": "Sign in to your account",
             "user_not_found": "user_not_found"
         },
-        "new_idea": {
-            "error_msg": "Field to create idea",
-            "form_title": "Write your idea",
+        "idea": {
+            "create_title": "Write your idea",
+            "create_error_msg": "Field to create idea",
+            "create_success_msg": "Idea created successfully",
+            "edit_title": "Edit your idea",
+            "edit_error_msg": "Field to edit idea",
+            "edit_success_msg": "Idea edited successfully",
             "image": "Image",
             "publish": "Publish",
-            "success_msg": "Idea created successfully",
             "tags": "Tags",
             "title": "Title"
         },
