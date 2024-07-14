@@ -5,7 +5,6 @@ import { getUser } from "@/lib/lucia";
 
 export default async function ProfilePage() {
     const user = await getUser()
-
     const { ideas } = await getUserIdeas(String(user?.id));
 
     return (

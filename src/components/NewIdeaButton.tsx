@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-async function NewIdeaButton() {
+const NewIdeaButton = () => {
     const activeLocale = useLocale()
     const t = useTranslations()
 

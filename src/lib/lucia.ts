@@ -38,12 +38,12 @@ export const getUser = async () => {
         where: {
             id: user?.id
         },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            imagePath: true
-        }
+        // select: {
+        //     id: true,
+        //     name: true,
+        //     email: true,
+        //     imagePath: true
+        // }
     })
     return dbUser
 }

@@ -8,6 +8,9 @@ const nextConfig = {
         config.externals.push("@node-rs/argon2", "@node-rs/bcrypt");
         return config;
     },
+    images: {
+        domains: ["res.cloudinary.com"],
+    },
 };
 
 export default withNextIntl(nextConfig);

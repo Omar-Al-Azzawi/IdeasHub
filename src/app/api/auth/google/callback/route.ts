@@ -69,8 +69,6 @@ export async function GET(req: NextRequest, res: Response) {
 
     const session = await lucia.createSession(userId, {})
 
-    console.log({ session })
-
     const sessionCookie = await lucia.createSessionCookie(session.id)
     cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 

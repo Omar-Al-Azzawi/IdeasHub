@@ -37,6 +37,15 @@
             "add_comment": "Add comment",
             "comment_placeholder": "Type your comment here..."
         },
+        "edit_profile": {
+            "title": " Edit your profile",
+            "name": "Name",
+            "bio": "Bio",
+            "image": "Image",
+            "success_msg": "Edited profile successfully",
+            "error_msg": "Edit profile failed",
+            "validation_err": "Validation failed"
+        },
         "signup": {
             "title": "Sign up to create your account",
             "name": "Name",

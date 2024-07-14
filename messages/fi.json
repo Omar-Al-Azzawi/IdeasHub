@@ -36,6 +36,15 @@
             "add_comment": "Lisää kommentti",
             "comment_placeholder": "Kirjoita kommenttisi tähän..."
         },
+        "edit_profile": {
+            "title": "Muokkaa profiiliasi",
+            "name": "Nimi",
+            "bio": "Bio",
+            "image": "Kuva",
+            "success_msg": "Profiilin muokkaus onnistui",
+            "error_msg": "Profiilin muokkaus epäonnistui",
+            "validation_err": "Validointi epäonnistui"
+        },
         "signup": {
             "title": "Rekisteröidy luodaksesi tilisi",
             "name": "Nimi",

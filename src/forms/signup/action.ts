@@ -47,8 +47,6 @@ const signupAction = async (signupFormData: SignupFormData) => {
             },
         });
 
-        console.log({ user })
-
         const session = await lucia.createSession(user.id.toString(), {})
         const sessionCookie = await lucia.createSessionCookie(session.id)
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)

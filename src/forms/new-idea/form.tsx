@@ -19,7 +19,7 @@ import RTE from "@/components/RTE/rich-text-editor";
 import TagInput from "@/components/TagSelect";
 import { JSONContent } from "@tiptap/react";
 import { useToastMessage } from "@/hooks/useToastMsg";
-import { useRedirect } from "@/hooks/userRedirect";
+import { useRedirect } from "@/hooks/useRedirect";
 import { useLocale } from "next-intl";
 
 const initialState = {
