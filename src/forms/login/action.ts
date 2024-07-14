@@ -6,10 +6,13 @@ import { revalidatePath } from "next/cache";
 import { type LoginFormData, LoginSchema } from "./schema";
 import { Argon2id } from 'oslo/password'
 import { lucia } from "@/lib/lucia"
+import { getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
 const loginAction = async (loginFormData: LoginFormData) => {
+    const t = await getTranslations()
+
     try {
         const result = LoginSchema.safeParse(loginFormData);
         if (result.success === false) {
@@ -22,29 +25,23 @@ const loginAction = async (loginFormData: LoginFormData) => {
         });
 
         if (!user) {
-            console.error("User not found");
-            return { success: false, message: "Invalid email or password" };
+            return { success: false, message: t("forms.login.user_not_found") };
         }
 
         const passwordMatch = await new Argon2id().verify(String(user.password), result.data.password,)
         if (!passwordMatch) {
-            return { success: false, error: "Invalid Credentials!" }
+            return { success: false, error: t("forms.login.invalid_password") }
         }
         // successfully login
         const session = await lucia.createSession(String(user.id), {})
         const sessionCookie = await lucia.createSessionCookie(session.id)
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 
-        if (!passwordMatch) {
-            console.error("Password does not match");
-            return { success: false, message: "Invalid email or password" };
-        }
-
         revalidatePath("/");
-        return { success: true, message: "Logged in successfully" };
+        return { success: true, message: t("forms.login.success_msg") };
     } catch (error) {
         console.error("Login failed:", error);
-        return { success: false, message: "Login failed. Please try again later." };
+        return { success: false, message: t("forms.login.error_msg") };
     }
 };
 

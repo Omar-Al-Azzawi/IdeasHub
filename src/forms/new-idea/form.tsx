@@ -20,7 +20,7 @@ import TagInput from "@/components/TagSelect";
 import { JSONContent } from "@tiptap/react";
 import { useToastMessage } from "@/hooks/useToastMsg";
 import { useRedirect } from "@/hooks/useRedirect";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const initialState = {
     success: true,
@@ -29,6 +29,7 @@ const initialState = {
 
 const NewIdeaForm = () => {
     const activeLocale = useLocale()
+    const t = useTranslations()
     const form = useForm();
     const [content, setContent] = useState<null | JSONContent>(null);
     const [tags, setTags] = useState<string[]>([]);
@@ -46,7 +47,7 @@ const NewIdeaForm = () => {
         <div className="flex min-h-full flex-col justify-center mt-16 sm:px-6 lg:px-18">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">
-                    Write your idea
+                    {t('forms.new_idea.form_title')}
                 </h2>
             </div>
             <Form {...form}>
@@ -56,8 +57,8 @@ const NewIdeaForm = () => {
                         name="title"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Title</FormLabel>
-                                <Input placeholder="Idea title" {...field} />
+                                <FormLabel>{t('forms.new_idea.title')}</FormLabel>
+                                <Input {...field} />
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -77,7 +78,7 @@ const NewIdeaForm = () => {
                         name="imagePath"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Image</FormLabel>
+                                <FormLabel>{t('forms.new_idea.image')}</FormLabel>
                                 <Input {...field} type="file" />
                                 <FormMessage />
                             </FormItem>
@@ -88,7 +89,7 @@ const NewIdeaForm = () => {
                         name="tags"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Tags</FormLabel>
+                                <FormLabel>{t('forms.new_idea.tags')}</FormLabel>
                                 <TagInput tags={tags} setTags={setTags} />
                                 <FormMessage />
                             </FormItem>
@@ -102,7 +103,7 @@ const NewIdeaForm = () => {
                                 <FormControl>
                                     <Checkbox {...field} />
                                 </FormControl>
-                                <FormLabel className="text-Black mx-2">Publish</FormLabel>
+                                <FormLabel className="text-Black mx-2">{t('forms.new_idea.publish')}</FormLabel>
                                 <FormMessage />
                             </FormItem>
                         )}

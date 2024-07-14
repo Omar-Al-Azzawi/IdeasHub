@@ -2,65 +2,96 @@
     "action": {
         "add": "Lisää",
         "adding": "Lisätään...",
-        "signup": "Rekisteröidy",
+        "cancel": "Peruuta",
+        "error": "Jotain meni pieleen",
+        "error_auth_user": "Käyttäjää ei ole todennettu",
+        "error_bookmark": "Kirjanmerkin lisääminen epäonnistui",
+        "error_delete_idea": "Idean poistaminen epäonnistui",
+        "error_follow": "Seurannan tilan vaihtaminen epäonnistui.",
+        "error_like": "Tykkäyksen tilan vaihtaminen epäonnistui.",
+        "error_validation": "Virheelliset syötteen tiedot!",
         "login": "Kirjaudu sisään",
         "logging": "Kirjaudutaan...",
-        "cancel": "Peruuta",
         "save": "Tallenna",
-        "saving": "Tallennetaan..."
+        "saving": "Tallennetaan...",
+        "signup": "Rekisteröidy",
+        "success_delete_idea": "Idea poistettu onnistuneesti",
+        "success_follow": "Seuraaminen onnistui.",
+        "success_unfollow": "Seuraaminen lopetettu onnistuneesti."
     },
-    "pages": {
-        "bookmarks": {
-            "title": "Kirjanmerkkilistasi on tyhjä.",
-            "sub_title": "Palaa ideoihisi ja lisää kirjanmerkki niihin, jotka haluat säilyttää tai tarkistaa myöhemmin. Kaikki lisäämäsi kirjanmerkit tallennetaan tänne."
+    "forms": {
+        "add_comment": {
+            "add_comment": "Lisää kommentti",
+            "comment_placeholder": "Kirjoita kommenttisi tähän...",
+            "error_auth": "Sinun täytyy olla kirjautuneena kommentoidaksesi.",
+            "error_comment": "Kommentin lisääminen epäonnistui.",
+            "success_comment": "Kommentti lisätty onnistuneesti"
         },
-        "home": {
-            "title": "Jaa ideasi, inspiroi maailmaa",
-            "sub_title": "Ideoiden jakamisalustamme antaa sinulle mahdollisuuden yhdistää samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja tuoda ideasi eloon.",
-            "new_idea": "Uusi idea",
-            "learn_more": "Lisätietoja"
+        "edit_profile": {
+            "bio": "Esittely",
+            "error_msg": "Profiilin muokkaus epäonnistui",
+            "image": "Kuva",
+            "name": "Nimi",
+            "success_msg": "Profiilin muokkaus onnistui",
+            "title": "Muokkaa profiiliasi",
+            "validation_err": "Vahvistus epäonnistui"
+        },
+        "login": {
+            "do_not_have_account": "Eikö sinulla ole tiliä",
+            "email": "Sähköposti",
+            "email_placeholder": "Kirjoita sähköpostisi",
+            "error_msg": "Kirjautuminen epäonnistui.",
+            "google": "Jatka Googlella!",
+            "invalid_password": "Virheellinen salasana!",
+            "password": "Salasana",
+            "password_placeholder": "Kirjoita salasanasi",
+            "success_msg": "Kirjautuminen onnistui",
+            "title": "Kirjaudu tilillesi",
+            "user_not_found": "Käyttäjää ei löydy"
+        },
+        "new_idea": {
+            "error_msg": "Idean luominen epäonnistui",
+            "form_title": "Kirjoita ideasi",
+            "image": "Kuva",
+            "publish": "Julkaise",
+            "success_msg": "Idea luotu onnistuneesti",
+            "tags": "Tunnisteet",
+            "title": "Otsikko"
+        },
+        "signup": {
+            "email": "Sähköposti",
+            "email_placeholder": "Kirjoita sähköpostisi",
+            "error_msg": "Rekisteröityminen epäonnistui.",
+            "existingUser": "Käyttäjä on jo olemassa",
+            "name": "Nimi",
+            "password": "Salasana",
+            "password_placeholder": "Kirjoita salasanasi",
+            "success_msg": "Rekisteröityminen onnistui",
+            "title": "Rekisteröidy luodaksesi tilin",
+            "you_have_account": "Sinulla on jo tili"
         }
     },
     "navbar": {
         "bookmarks": "Kirjanmerkit",
         "home": "Koti",
         "ideas": "Ideat",
+        "login": "Kirjaudu",
         "logout": "Kirjaudu ulos",
-        "my_account": "Oma tili",
+        "my_account": "Tilini",
         "profile": "Profiili",
-        "signup": "Rekisteröidy",
-        "login": "Kirjaudu sisään"
+        "signup": "Rekisteröidy"
     },
-    "forms": {
-        "add_comment": {
-            "add_comment": "Lisää kommentti",
-            "comment_placeholder": "Kirjoita kommenttisi tähän..."
+    "pages": {
+        "bookmarks": {
+            "empty_sub_title": "Palaa takaisin ideoihisi ja kirjanmerkitse idea, jonka haluat säilyttää tai tarkistaa myöhemmin. Jokainen kirjanmerkitsemäsi idea tallennetaan tänne.",
+            "empty_title": "Kirjanmerkkilistasi on tyhjä.",
+            "title": "Omat kirjanmerkit"
         },
-        "edit_profile": {
-            "title": "Muokkaa profiiliasi",
-            "name": "Nimi",
-            "bio": "Bio",
-            "image": "Kuva",
-            "success_msg": "Profiilin muokkaus onnistui",
-            "error_msg": "Profiilin muokkaus epäonnistui",
-            "validation_err": "Validointi epäonnistui"
-        },
-        "signup": {
-            "title": "Rekisteröidy luodaksesi tilisi",
-            "name": "Nimi",
-            "email": "Sähköposti",
-            "email_placeholder": "Kirjoita sähköpostisi",
-            "password": "Salasana",
-            "password_placeholder": "Kirjoita salasanasi",
-            "you_have_account": "Sinulla on tili"
-        },
-        "login": {
-            "title": "Kirjaudu tilillesi",
-            "email": "Sähköposti",
-            "email_placeholder": "Kirjoita sähköpostisi",
-            "password": "Salasana",
-            "password_placeholder": "Kirjoita salasanasi",
-            "do_not_have_account": "Eikö sinulla ole tiliä"
+        "home": {
+            "new_idea": "Uusi idea",
+            "sub_title": "Ideoiden jakamisalustamme antaa sinulle mahdollisuuden yhdistyä samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja tuoda ideasi eloon.",
+            "title": "Jaa ideasi, inspiroi maailmaa",
+            "learn_more": "Lue lisää"
         }
     }
 }

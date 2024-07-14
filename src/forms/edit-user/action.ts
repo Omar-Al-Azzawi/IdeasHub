@@ -23,7 +23,7 @@ const editProfileAction = async (
     try {
         const user = await getUser();
         if (!user) {
-            return { success: false, message: "You must be logged in to edit your profile.", timestamp };
+            return { success: false, message: t("action.auth_user"), timestamp };
         }
 
         const name = formData.get("name") as string | null;

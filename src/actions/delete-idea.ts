@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import { getUser } from "@/lib/lucia";
+import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 
 export async function deleteIdeaAction(
@@ -13,10 +14,11 @@ export async function deleteIdeaAction(
     formData: FormData
 ) {
     const timestamp = Date.now();
+    const t = await getTranslations()
     try {
         const user = await getUser()
         if (!user) {
-            return { success: false, message: "User not authenticated", timestamp };
+            return { success: false, message: t("action.error_auth_user"), timestamp };
         }
 
         await prisma.$transaction(async (prisma) => {
@@ -41,8 +43,8 @@ export async function deleteIdeaAction(
         });
 
         revalidatePath("/");
-        return { success: true, message: "Deleted idea successfully", timestamp };
+        return { success: true, message: t("action.success_delete_idea"), timestamp };
     } catch (e) {
-        return { success: false, message: "Failed to delete idea", timestamp };
+        return { success: false, message: t("action.error_delete_idea"), timestamp };
     }
 }

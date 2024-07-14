@@ -1,11 +1,13 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
 const BookmarkAction = async (ideaId: number, userId: string) => {
+    const t = await getTranslations()
     try {
         const existingBookmark = await prisma.bookmark.findUnique({
             where: {
@@ -33,8 +35,7 @@ const BookmarkAction = async (ideaId: number, userId: string) => {
 
         revalidatePath("/");
     } catch (error) {
-        console.error('Error toggling bookmark:', error);
-        return "Failed to bookmark";
+        return t("action.error_bookmark");
     }
 }
 

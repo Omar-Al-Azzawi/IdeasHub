@@ -3,8 +3,10 @@
 import { generateCodeVerifier, generateState } from "arctic"
 import { googleOAuthClient } from "@/lib/googleOauth"
 import { cookies } from "next/headers"
+import { getTranslations } from "next-intl/server"
 
 export const getGoogleOauth = async () => {
+    const t = await getTranslations()
     try {
         const state = generateState()
         const codeVerifier = generateCodeVerifier()
@@ -24,6 +26,6 @@ export const getGoogleOauth = async () => {
         return { success: true, url: authUrl.toString() }
 
     } catch (error) {
-        return { success: false, error: 'Something went wrong' }
+        return { success: false, error: t('action.error') }
     }
 }

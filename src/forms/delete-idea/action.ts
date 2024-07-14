@@ -1,6 +1,8 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { getUser } from "@/lib/lucia";
+import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 
 export async function deleteIdeaAction(
@@ -12,15 +14,13 @@ export async function deleteIdeaAction(
     formData: FormData
 ) {
     const timestamp = Date.now();
+    const t = await getTranslations()
+    const user = await getUser()
 
     try {
-        const session = false
-        if (!session) {
-            return { success: false, message: "User not authenticated", timestamp };
+        if (!user) {
+            return { success: false, message: t("action.error_auth_user"), timestamp };
         }
-
-        // TODO: get the user ID
-        const userId = '1'
 
         await prisma.$transaction(async (prisma) => {
             await prisma.like.deleteMany({
@@ -38,14 +38,14 @@ export async function deleteIdeaAction(
             await prisma.idea.delete({
                 where: {
                     id: ideaId,
-                    authorId: userId
+                    authorId: user?.id
                 }
             });
         });
 
         revalidatePath("/");
-        return { success: true, message: "Deleted idea successfully", timestamp };
+        return { success: true, message: t("action.success_delete_idea"), timestamp };
     } catch (e) {
-        return { success: false, message: "Failed to delete idea", timestamp };
+        return { success: false, message: t("action.error_delete_idea"), timestamp };
     }
 }

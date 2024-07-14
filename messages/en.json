@@ -2,67 +2,96 @@
     "action": {
         "add": "Add",
         "adding": "Adding...",
-        "signup": "Sign up",
+        "cancel": "Cancel",
+        "error": "Something went wrong",
+        "error_auth_user": "User not authenticated",
+        "error_bookmark": "Failed to bookmark",
+        "error_delete_idea": "Failed to delete idea",
+        "error_follow": "Failed to toggle follow status.",
+        "error_like": "Failed to toggle like.",
+        "error_validation": "Invalid input data!",
         "login": "Log in",
         "logging": "Logging...",
-        "cancel": "Cancel",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "signup": "Sign up",
+        "success_delete_idea": "Deleted idea successfully",
+        "success_follow": "Followed successfully.",
+        "success_unfollow": "Unfollowed successfully."
     },
-    "pages": {
-        "bookmarks": {
-            "title": "My bookmarks",
-            "empty_title": "Your bookmark list is empty.",
-            "empty_sub_title": "Go back to your Ideas and bookmark Idea you would like to keep or check later. Each Idea you bookmark will be stored here."
+    "forms": {
+        "add_comment": {
+            "add_comment": "Add comment",
+            "comment_placeholder": "Type your comment here...",
+            "error_auth": "You must be logged in to comment.",
+            "error_comment": "Failed adding comment.",
+            "success_comment": "Comment added successfully"
         },
-        "home": {
-            "title": "Share Your Ideas, Inspire the World",
-            "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",
-            "new_idea": "New idea",
-            "learn_more": "Learn More"
+        "edit_profile": {
+            "bio": "Bio",
+            "error_msg": "Edit profile failed",
+            "image": "Image",
+            "name": "Name",
+            "success_msg": "Edited profile successfully",
+            "title": " Edit your profile",
+            "validation_err": "Validation failed"
+        },
+        "login": {
+            "do_not_have_account": "Don't have an account",
+            "email": "Email",
+            "email_placeholder": "Write your email",
+            "error_msg": "Login failed.",
+            "google": "Continue with Google!",
+            "invalid_password": "Invalid password!",
+            "password": "Password",
+            "password_placeholder": "Write your password",
+            "success_msg": "Logged in successfully",
+            "title": "Sign in to your account",
+            "user_not_found": "user_not_found"
+        },
+        "new_idea": {
+            "error_msg": "Field to create idea",
+            "form_title": "Write your idea",
+            "image": "Image",
+            "publish": "Publish",
+            "success_msg": "Idea created successfully",
+            "tags": "Tags",
+            "title": "Title"
+        },
+        "signup": {
+            "email": "Email",
+            "email_placeholder": "Write your email",
+            "error_msg": "Signup failed.",
+            "existingUser": "User already exist",
+            "name": "Name",
+            "password": "Password",
+            "password_placeholder": "Write your password",
+            "success_msg": "Signup successfully",
+            "title": "Sign up to create your account",
+            "you_have_account": "You have an account"
         }
     },
     "navbar": {
         "bookmarks": "Bookmarks",
         "home": "Home",
         "ideas": "Ideas",
+        "login": "Login",
         "logout": "Sign out",
         "my_account": "My Account",
         "profile": "Profile",
-        "signup": "Sign up",
-        "login": "Login"
+        "signup": "Sign up"
     },
-    "forms": {
-        "add_comment": {
-            "add_comment": "Add comment",
-            "comment_placeholder": "Type your comment here..."
+    "pages": {
+        "bookmarks": {
+            "empty_sub_title": "Go back to your Ideas and bookmark Idea you would like to keep or check later. Each Idea you bookmark will be stored here.",
+            "empty_title": "Your bookmark list is empty.",
+            "title": "My bookmarks"
         },
-        "edit_profile": {
-            "title": " Edit your profile",
-            "name": "Name",
-            "bio": "Bio",
-            "image": "Image",
-            "success_msg": "Edited profile successfully",
-            "error_msg": "Edit profile failed",
-            "validation_err": "Validation failed"
-        },
-        "signup": {
-            "title": "Sign up to create your account",
-            "name": "Name",
-            "email": "Email",
-            "email_placeholder": "Write your email",
-            "password": "Password",
-            "password_placeholder": "Write your password",
-            "you_have_account": "You have an account "
-        },
-        "login": {
-            "title": "Sign in to your account",
-            "email": "Email",
-            "email_placeholder": "Write your email",
-            "password": "Password",
-            "password_placeholder": "Write your password",
-            "do_not_have_account": "Don't have an account",
-            "google": "Continue with Google!"
+        "home": {
+            "learn_more": "Learn More",
+            "new_idea": "New idea",
+            "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",
+            "title": "Share Your Ideas, Inspire the World"
         }
     }
 }

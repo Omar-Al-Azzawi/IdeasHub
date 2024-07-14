@@ -1,12 +1,14 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
 const followAction = async (followerId: string, followingId: string) => {
     const timestamp = Date.now();
+    const t = await getTranslations()
     try {
         if (!followerId || !followingId) {
             throw new Error("Follower ID and Following ID are required.");
@@ -27,7 +29,7 @@ const followAction = async (followerId: string, followingId: string) => {
             });
 
             revalidatePath('/');
-            return { success: true, message: "Unfollowed successfully.", timestamp };
+            return { success: true, message: t("action.success_unfollow"), timestamp };
         } else {
             await prisma.follower.create({
                 data: {
@@ -37,11 +39,11 @@ const followAction = async (followerId: string, followingId: string) => {
             });
 
             revalidatePath('/');
-            return { success: true, message: "Followed successfully.", timestamp };
+            return { success: true, message: t("action.success_follow"), timestamp };
         }
     } catch (error) {
         console.error(error);
-        return { success: false, message: "Failed to toggle follow status.", timestamp };
+        return { success: false, message: t("error_follow"), timestamp };
     }
 };
 

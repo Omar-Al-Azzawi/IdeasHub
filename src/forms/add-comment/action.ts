@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { type CommentFormData, CommentSchema } from "./schema"
 import { getUser } from "@/lib/lucia";
+import { getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
@@ -11,10 +12,11 @@ const newCommentAction = async (
     ideaId: string,
     commentFormData: CommentFormData,
 ) => {
+    const t = await getTranslations()
     try {
         const user = await getUser()
         if (!user) {
-            return { success: false, message: "You must be logged in to comment." };
+            return { success: false, message: t("forms.add_comment.error_auth") };
         }
 
         const data = {
@@ -25,7 +27,7 @@ const newCommentAction = async (
 
         const result = CommentSchema.safeParse(data);
         if (!result.success) {
-            return { success: false, message: "Invalid input data!" };
+            return { success: false, message: t("action.error_validation") };
         }
 
         await prisma.comment.create({
@@ -37,10 +39,10 @@ const newCommentAction = async (
         });
 
         revalidatePath("/");
-        return { success: true, message: "Comment added successfully" };
+        return { success: true, message: t("forms.add_comment.success_comment") };
     } catch (error) {
         console.error("Failed adding comment", error);
-        return { success: false, message: "Failed adding comment. Please try again!" };
+        return { success: false, message: t("forms.add_comment.error_comment") };
     }
 };
 

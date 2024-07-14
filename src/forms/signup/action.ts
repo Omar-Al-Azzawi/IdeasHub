@@ -7,16 +7,18 @@ import { Argon2id } from 'oslo/password'
 import { lucia } from "@/lib/lucia"
 import { generateId } from 'lucia';
 import { cookies } from "next/headers"
+import { getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
 const signupAction = async (signupFormData: SignupFormData) => {
+    const t = await getTranslations()
+
     try {
         const result = SignupSchema.safeParse(signupFormData);
 
         if (!result.success) {
-            console.error("Validation failed:", result.error.formErrors.fieldErrors);
-            return { success: false, message: "Validation failed" };
+            return { success: false, message: t("Validation failed") };
         }
 
         const { name, email, password } = signupFormData as {
@@ -32,7 +34,7 @@ const signupAction = async (signupFormData: SignupFormData) => {
         })
 
         if (existingUser) {
-            return { error: 'User already exists', success: false }
+            return { error: t('forms.signup.existingUser'), success: false }
         }
 
         const userId = generateId(15);
@@ -52,12 +54,12 @@ const signupAction = async (signupFormData: SignupFormData) => {
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 
         revalidatePath("/");
-        return { success: true, message: "Signup successfully" };
+        return { success: true, message: t("success_msg") };
     } catch (error) {
         console.error("Signup failed:", error);
         return {
             success: false,
-            message: "Signup failed. Please try again later.",
+            message: t("error_msg"),
         };
     }
 };

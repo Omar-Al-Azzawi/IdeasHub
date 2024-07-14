@@ -6,6 +6,7 @@ import { PrismaClient } from "@prisma/client";
 import { uploadImage } from "@/lib/upload-image";
 import { NewIdeaSchema } from "./schema"
 import { getUser } from "@/lib/lucia";
+import { getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
@@ -17,11 +18,12 @@ const newIdeaAction = async (
     formData: FormData,
 ) => {
     const timestamp = Date.now();
+    const t = await getTranslations()
 
     try {
         const user = await getUser()
         if (!user) {
-            return { success: false, message: "You must be logged in to edit your profile." };
+            return { success: false, message: t("action.error_auth_user") };
         }
 
         const title = formData.get("title") as string;
@@ -50,7 +52,7 @@ const newIdeaAction = async (
         const result = NewIdeaSchema.safeParse(data);
 
         if (!result.success) {
-            return { success: false, message: "Validation failed", timestamp };
+            return { success: false, message: t("action.error_validation"), timestamp };
         }
 
         await prisma.idea.create({
@@ -62,7 +64,7 @@ const newIdeaAction = async (
         revalidatePath("/");
         return {
             success: true,
-            message: "Idea created successfully",
+            message: t('forms.new_idea.success_msg'),
             timestamp,
             data: {
                 redirect
@@ -71,7 +73,7 @@ const newIdeaAction = async (
 
     } catch (error) {
         console.error("Failed creating idea", error);
-        return { success: false, message: "Failed creating idea", timestamp };
+        return { success: false, message: t('forms.new_idea.error_msg'), timestamp };
     }
 };
 
