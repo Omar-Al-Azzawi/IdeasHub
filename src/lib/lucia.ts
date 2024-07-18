@@ -2,6 +2,7 @@ import { Lucia } from 'lucia'
 import { PrismaAdapter } from '@lucia-auth/adapter-prisma'
 import { cookies } from 'next/headers'
 import prisma from './db'
+import { User } from '@/types/User'
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user)
 
@@ -15,7 +16,7 @@ export const lucia = new Lucia(adapter, {
     }
 })
 
-export const getUser = async () => {
+export const getUser = async (): Promise<User | null> => {
     const sessionId = cookies().get(lucia.sessionCookieName)?.value || null
     if (!sessionId) {
         return null
@@ -32,18 +33,16 @@ export const getUser = async () => {
         }
 
     } catch (error) {
-
+        console.error(error)
     }
     const dbUser = await prisma.user.findUnique({
         where: {
             id: user?.id
         },
-        // select: {
-        //     id: true,
-        //     name: true,
-        //     email: true,
-        //     imagePath: true
-        // }
+        include: {
+            followers: true,
+            following: true
+        }
     })
-    return dbUser
+    return dbUser as User | null
 }

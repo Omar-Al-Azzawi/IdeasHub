@@ -20,9 +20,10 @@ import { useToastMessage } from '@/hooks/useToastMsg';
 import { type EditProfileFormData, EditProfileSchema } from "./schema";
 import { useRedirect } from "@/hooks/useRedirect";
 import { useLocale, useTranslations } from "next-intl";
+import { User } from "@/types/User";
 
 type Props = {
-    user: any
+    user: User | null
 }
 
 const initialState = {
@@ -36,8 +37,8 @@ const EditProfileForm = ({ user }: Props) => {
     const form = useForm<EditProfileFormData>({
         resolver: zodResolver(EditProfileSchema),
         defaultValues: {
-            name: user.name,
-            bio: user.bio || '',
+            name: user?.name || undefined,
+            bio: user?.bio || '',
             imagePath: ""
         },
     })

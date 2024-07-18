@@ -34,7 +34,7 @@ const newCommentAction = async (
             data: {
                 content: result.data.content,
                 ideaId: Number(ideaId),
-                authorId: user.id,
+                authorId: String(user.id),
             },
         });
 

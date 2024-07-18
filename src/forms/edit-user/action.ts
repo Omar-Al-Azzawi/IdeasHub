@@ -48,7 +48,7 @@ const editProfileAction = async (
         }
 
         await prisma.user.update({
-            where: { id: user.id },
+            where: { id: String(user.id) },
             data
         });
 

@@ -9,15 +9,10 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTheme } from "next-themes";
 import { useLocale, useTranslations } from "next-intl";
 import { Pivot as Hamburger } from 'hamburger-react'
-
-type User = {
-    email: string;
-    name: string | null;
-    imagePath: string | null;
-} | null
+import { User as UserType } from "@/types/User";
 
 type Props = {
-    user: User
+    user: UserType | null
 }
 
 const container = {

@@ -35,7 +35,7 @@ export default function LocalSwitcher(lang: any) {
                 onValueChange={onSelectChange}
                 disabled={isPending}
             >
-                <SelectTrigger className="bg-transparent py-2">
+                <SelectTrigger className="bg-transparent py-2 border-none">
                     <SelectValue />
                     <Globe
                         className="mx-1 hover:text-teal-500 duration-500"

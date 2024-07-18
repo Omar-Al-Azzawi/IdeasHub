@@ -4,15 +4,10 @@ import Particles from "./Particles";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "./ui/button";
 import NewIdeaButton from "./NewIdeaButton";
-
-type User = {
-    email: string;
-    name: string | null;
-    imagePath: string | null;
-} | null
+import { User } from "@/types/User";
 
 type Props = {
-    user: User
+    user: User | null
 }
 
 export default function Landing({ user }: Props) {

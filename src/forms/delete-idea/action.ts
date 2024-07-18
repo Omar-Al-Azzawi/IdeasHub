@@ -38,7 +38,7 @@ export async function deleteIdeaAction(
             await prisma.idea.delete({
                 where: {
                     id: ideaId,
-                    authorId: user?.id
+                    authorId: String(user?.id)
                 }
             });
         });

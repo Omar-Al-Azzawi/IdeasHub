@@ -10,15 +10,10 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SignOutButton from "./SignOutButton"
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
-
-type User = {
-    email: string;
-    name: string | null;
-    imagePath: string | null;
-} | null
+import { User as UserType } from "@/types/User";
 
 type Props = {
-    user: User
+    user: UserType | null
 }
 
 const ActionItems = ({ user }: Props) => {

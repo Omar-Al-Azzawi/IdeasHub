@@ -18,7 +18,7 @@ const NavItems = () => {
     const t = useTranslations()
 
     return (
-        <div className="space-x-4 hidden md:flex lg:justify-center ">
+        <div className="space-x-4 hidden md:flex lg:justify-center">
             {navItems.map((navItem: any, idx: number) => (
                 <Link
                     key={`link=${idx}`}

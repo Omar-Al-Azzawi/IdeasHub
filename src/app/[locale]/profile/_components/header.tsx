@@ -6,9 +6,10 @@ import { UserCog, UsersIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import { User } from "@/types/User";
 
 type Props = {
-    user: any;
+    user: User | null;
     edit?: boolean;
 };
 
@@ -44,7 +45,7 @@ const Header = ({ user, edit }: Props) => {
                                     <div className="flex items-center space-x-1">
                                         <UsersIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                                         <span className="text-gray-500 dark:text-gray-400">
-                                            {user?.followersCount}
+                                            {user?.followers.length}
                                         </span>
                                     </div>
                                 </div>
@@ -53,7 +54,7 @@ const Header = ({ user, edit }: Props) => {
                                     <div className="flex items-center space-x-1">
                                         <UsersIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                                         <span className="text-gray-500 dark:text-gray-400">
-                                            {user?.followingCount}
+                                            {user?.following.length}
                                         </span>
                                     </div>
                                 </div>
@@ -64,7 +65,7 @@ const Header = ({ user, edit }: Props) => {
                 {user && (
                     <div className="mt-4 lg:mt-0">
                         {!edit && user.id ? (
-                            <Follow user={user} id={user.id} />
+                            <Follow user={user} id={String(user.id)} />
                         ) : (
                             <Button asChild size='sm' className="hover:bg-teal-500">
                                 <Link href={`/${activeLocale}/profile/edit`}>
