@@ -96,5 +96,10 @@
             "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",
             "title": "Share Your Ideas, Inspire the World"
         }
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "like_idea": "liked your idea:",
+        "mark_all": "Mark all as read"
     }
 }
