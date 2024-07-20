@@ -1,3 +1,5 @@
+'use client'
+
 import { User } from "@/types/User"
 import { BellIcon, CheckIcon } from "lucide-react"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu"
@@ -13,8 +15,8 @@ type Props = {
 }
 
 const Notification = ({ user }: Props) => {
-    if (!user) return null
     const t = useTranslations()
+    if (!user) return null
     const notifications = use(getNotifications(String(user.id)))
     const unReadNotifications = notifications.filter((notification) => notification.readAt === null)
 
@@ -35,7 +37,7 @@ const Notification = ({ user }: Props) => {
                     <ScrollArea className="max-h-[400px] p-2">
                         {notifications.map((notification) => {
                             return (
-                                <div className="grid gap-2">
+                                <div className="grid gap-2" key={notification.id}>
                                     <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground">
                                         <div className="flex-1 space-y-1">
                                             <p className="text-sm font-medium">{notification.content}</p>
