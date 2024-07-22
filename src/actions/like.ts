@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 const LikeAction = async (ideaId: number, userId: string) => {
     const t = await getTranslations();
-    const user = await getUser()
+    const user = await getUser();
 
     try {
         const existingLike = await prisma.like.findUnique({
@@ -45,13 +45,15 @@ const LikeAction = async (ideaId: number, userId: string) => {
                 },
             });
 
-            await prisma.notification.create({
-                data: {
-                    type: NotificationTypes.LIKE,
-                    content: `${user?.name} ${t('notifications.like_idea')} ${idea.title}`,
-                    user: { connect: { id: idea.authorId } },
-                },
-            });
+            if (String(user?.id) !== idea.authorId) {
+                await prisma.notification.create({
+                    data: {
+                        type: NotificationTypes.LIKE,
+                        content: `${user?.name} ${t('notifications.like_idea')} ${idea.title}`,
+                        user: { connect: { id: idea.authorId } },
+                    },
+                });
+            }
         }
 
         revalidatePath("/");
