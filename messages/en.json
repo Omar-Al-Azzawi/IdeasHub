@@ -102,6 +102,7 @@
         "no_notifications": "No Notifications",
         "no_notifications_sub": "You don't have any new notifications.",
         "like_idea": "liked your idea:",
-        "mark_all": "Mark all as read"
+        "mark_all": "Mark all as read",
+        "following": "started following you"
     }
 }

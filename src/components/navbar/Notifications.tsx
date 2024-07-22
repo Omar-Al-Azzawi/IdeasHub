@@ -7,6 +7,8 @@ import { use } from "react"
 import { Button } from "../ui/button"
 import formatDate from "@/lib/formatDate"
 import { getTranslations } from "next-intl/server"
+import Link from "next/link"
+import { useLocale } from "next-intl"
 
 type Props = {
     user: User | null
@@ -14,6 +16,7 @@ type Props = {
 
 const Notification = ({ user }: Props) => {
     const t = use(getTranslations())
+    const activeLocale = useLocale()
 
     if (!user) return null
 
@@ -41,15 +44,17 @@ const Notification = ({ user }: Props) => {
                             {notifications.map((notification) => {
                                 return (
                                     <div className="grid gap-2" key={notification.id}>
-                                        <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
-                                            <div className="flex-1 space-y-1">
-                                                <p className="text-sm font-medium">{notification.content}</p>
-                                                <p className="text-xs text-muted-foreground">{formatDate(String(notification.createdAt))}</p>
+                                        <Link href={`/${activeLocale}/ideas/${notification.ideaId}`}>
+                                            <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
+                                                <div className="flex-1 space-y-1">
+                                                    <p className="text-sm font-medium">{notification.content}</p>
+                                                    <p className="text-xs text-muted-foreground">{formatDate(String(notification.createdAt))}</p>
+                                                </div>
+                                                <Button variant="ghost" size="sm">
+                                                    <CheckIcon className="h-4 w-4" />
+                                                </Button>
                                             </div>
-                                            <Button variant="ghost" size="sm">
-                                                <CheckIcon className="h-4 w-4" />
-                                            </Button>
-                                        </div>
+                                        </Link>
                                     </div>
                                 )
                             })}

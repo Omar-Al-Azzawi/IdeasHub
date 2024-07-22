@@ -1,5 +1,7 @@
 "use server";
 
+import { NotificationTypes } from "@/Constant/Index";
+import { getUser } from "@/lib/lucia";
 import { PrismaClient } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
@@ -9,6 +11,8 @@ const prisma = new PrismaClient();
 const followAction = async (followerId: string, followingId: string) => {
     const timestamp = Date.now();
     const t = await getTranslations()
+    const user = await getUser();
+
     try {
         if (!followerId || !followingId) {
             throw new Error("Follower ID and Following ID are required.");
@@ -35,6 +39,14 @@ const followAction = async (followerId: string, followingId: string) => {
                 data: {
                     follower: { connect: { id: followerId } },
                     following: { connect: { id: followingId } },
+                },
+            });
+
+            await prisma.notification.create({
+                data: {
+                    type: NotificationTypes.FOLLOW,
+                    content: `${user?.name} ${t('notifications.following')}`,
+                    user: { connect: { id: followerId } },
                 },
             });
 
