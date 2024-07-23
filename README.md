@@ -24,6 +24,7 @@ This platform allows users to share their ideas by posting them. Other users can
 - Light(Like) ideas
 - Follow other users
 - Search for ideas by title, content, and author
+- Notifications
 
 ## Technologies Used
 

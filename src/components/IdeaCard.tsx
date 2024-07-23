@@ -22,7 +22,7 @@ import { Bookmark, Check, Ellipsis, Lightbulb, MessageCircle, Plus } from "lucid
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { followAction } from "@/actions/follow";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 type Props = {
     user: any;
@@ -31,6 +31,7 @@ type Props = {
 
 const IdeaCard: React.FC<Props> = ({ user, idea }) => {
     const activeLocale = useLocale()
+    const t = useTranslations()
     const [isPending, startTransition] = useTransition()
     const isFollowed = user?.following?.find((follow: any) => idea.author.id === follow.followerId);
     const isLiked = user ? idea.likes.some((like) => like.userId === user.id) : false;
@@ -142,7 +143,7 @@ const IdeaCard: React.FC<Props> = ({ user, idea }) => {
                     <div>
                         <Button onClick={handleFollow} className="p-0 text-teal-500" variant="ghost">
                             {optimisticFollow ? <Check className="mr-1" size={14} /> : <Plus className="mr-1" size={14} />}
-                            {optimisticFollow ? "Following" : "Follow"}
+                            {optimisticFollow ? t('action.following') : t('action.follow')}
                         </Button>
                     </div>
                 ) : null}
