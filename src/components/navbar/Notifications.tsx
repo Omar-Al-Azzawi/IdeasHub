@@ -9,6 +9,7 @@ import formatDate from "@/lib/formatDate"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
 import { useLocale } from "next-intl"
+import { NotificationTypes } from "@/Constant/Index"
 
 type Props = {
     user: User | null
@@ -22,6 +23,8 @@ const Notification = ({ user }: Props) => {
 
     const notifications = use(getNotifications(String(user.id)))
     const unReadNotifications = notifications.filter((notification) => notification.readAt === null)
+
+    console.log({ notifications })
 
     return (
         <div className="mx-6 mt-2">
@@ -44,17 +47,31 @@ const Notification = ({ user }: Props) => {
                             {notifications.map((notification) => {
                                 return (
                                     <div className="grid gap-2" key={notification.id}>
-                                        <Link href={`/${activeLocale}/ideas/${notification.ideaId}`}>
-                                            <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
-                                                <div className="flex-1 space-y-1">
-                                                    <p className="text-sm font-medium">{notification.content}</p>
-                                                    <p className="text-xs text-muted-foreground">{formatDate(String(notification.createdAt))}</p>
+                                        {notification.type === NotificationTypes.LIKE || NotificationTypes.COMMENT ?
+                                            <Link href={`/${activeLocale}/ideas/${notification.ideaId}`}>
+                                                <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
+                                                    <div className="flex-1 space-y-1">
+                                                        <p className="text-sm font-medium">{notification.content}</p>
+                                                        <p className="text-xs text-muted-foreground">{formatDate(String(notification.createdAt))}</p>
+                                                    </div>
+                                                    <Button variant="ghost" size="sm">
+                                                        <CheckIcon className="h-4 w-4" />
+                                                    </Button>
                                                 </div>
-                                                <Button variant="ghost" size="sm">
-                                                    <CheckIcon className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </Link>
+                                            </Link>
+                                            :
+                                            <Link href={`/${activeLocale}/profile/${notification.issuerId}`}>
+                                                <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
+                                                    <div className="flex-1 space-y-1">
+                                                        <p className="text-sm font-medium">{notification.content}</p>
+                                                        <p className="text-xs text-muted-foreground">{formatDate(String(notification.createdAt))}</p>
+                                                    </div>
+                                                    <Button variant="ghost" size="sm">
+                                                        <CheckIcon className="h-4 w-4" />
+                                                    </Button>
+                                                </div>
+                                            </Link>
+                                        }
                                     </div>
                                 )
                             })}

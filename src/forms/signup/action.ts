@@ -54,12 +54,12 @@ const signupAction = async (signupFormData: SignupFormData) => {
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 
         revalidatePath("/");
-        return { success: true, message: t("success_msg") };
+        return { success: true, message: t("forms.signup.success_msg") };
     } catch (error) {
         console.error("Signup failed:", error);
         return {
             success: false,
-            message: t("error_msg"),
+            message: t("forms.signup.error_msg"),
         };
     }
 };

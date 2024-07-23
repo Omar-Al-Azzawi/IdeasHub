@@ -11,12 +11,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { CornerDownLeft } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
+import { Idea } from "@/types/Idea";
 
 type Props = {
-    ideaId: string;
+    idea: Idea;
 };
 
-const NewCommentForm = ({ ideaId }: Props) => {
+const NewCommentForm = ({ idea }: Props) => {
     const t = useTranslations()
     const form = useForm<CommentFormData>({
         resolver: zodResolver(CommentSchema),
@@ -27,7 +28,7 @@ const NewCommentForm = ({ ideaId }: Props) => {
 
     async function onSubmit(values: CommentFormData) {
         try {
-            const result = await newCommentAction(ideaId, values);
+            const result = await newCommentAction(idea, values);
             if (result.success) {
                 toast(result.message);
                 form.reset();

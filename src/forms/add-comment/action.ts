@@ -5,11 +5,13 @@ import { revalidatePath } from "next/cache";
 import { type CommentFormData, CommentSchema } from "./schema"
 import { getUser } from "@/lib/lucia";
 import { getTranslations } from "next-intl/server";
+import { NotificationTypes } from "@/Constant/Index";
+import { Idea } from "@/types/Idea";
 
 const prisma = new PrismaClient();
 
 const newCommentAction = async (
-    ideaId: string,
+    idea: Idea,
     commentFormData: CommentFormData,
 ) => {
     const t = await getTranslations()
@@ -21,7 +23,7 @@ const newCommentAction = async (
 
         const data = {
             content: commentFormData.content,
-            ideaId: Number(ideaId),
+            ideaId: Number(idea.id),
             authorId: user.id,
         };
 
@@ -33,8 +35,18 @@ const newCommentAction = async (
         await prisma.comment.create({
             data: {
                 content: result.data.content,
-                ideaId: Number(ideaId),
+                ideaId: Number(idea.id),
                 authorId: String(user.id),
+            },
+        });
+
+        await prisma.notification.create({
+            data: {
+                type: NotificationTypes.COMMENT,
+                content: `${user?.name} ${t('notifications.commenting')} ${idea.title}`,
+                issuer: { connect: { id: String(user?.id) } },
+                recipient: { connect: { id: idea.author.id } },
+                idea: { connect: { id: idea.id } }
             },
         });
 

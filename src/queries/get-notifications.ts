@@ -4,7 +4,7 @@ async function getNotifications(userId: string) {
     const notifications = await prisma.notification.findMany({
         where: {
             readAt: null,
-            userId
+            recipientId: userId,
         }
     });
 

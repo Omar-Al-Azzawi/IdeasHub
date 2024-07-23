@@ -8,21 +8,22 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  email         String         @unique
-  name          String?
-  password      String?
-  imagePath     String?
-  bio           String?
-  ideas         Idea[]
-  comments      Comment[]
-  likes         Like[]
-  bookmarks     Bookmark[]
-  followers     Follower[]     @relation("Followings")
-  following     Follower[]     @relation("Followers")
-  notifications Notification[]
-  session       Session[]
-  createdAt     DateTime       @default(now())
+  id                    String         @id @default(cuid())
+  email                 String         @unique
+  name                  String?
+  password              String?
+  imagePath             String?
+  bio                   String?
+  ideas                 Idea[]
+  comments              Comment[]
+  likes                 Like[]
+  bookmarks             Bookmark[]
+  followers             Follower[]     @relation("Followings")
+  following             Follower[]     @relation("Followers")
+  receivedNotifications Notification[] @relation("Recipient")
+  issuedNotifications   Notification[] @relation("Issuer")
+  session               Session[]
+  createdAt             DateTime       @default(now())
 }
 
 model Session {
@@ -89,13 +90,15 @@ model Follower {
 }
 
 model Notification {
-  id        Int       @id @default(autoincrement())
-  type      String
-  content   String?
-  user      User      @relation(fields: [userId], references: [id])
-  userId    String
-  idea      Idea?     @relation(fields: [ideaId], references: [id])
-  ideaId    Int?
-  createdAt DateTime  @default(now())
-  readAt    DateTime?
+  id          Int       @id @default(autoincrement())
+  type        String
+  content     String?
+  recipient   User      @relation("Recipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  recipientId String
+  issuer      User      @relation("Issuer", fields: [issuerId], references: [id], onDelete: Cascade)
+  issuerId    String
+  idea        Idea?     @relation(fields: [ideaId], references: [id], onDelete: Cascade)
+  ideaId      Int?
+  createdAt   DateTime  @default(now())
+  readAt      DateTime?
 }

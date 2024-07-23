@@ -4,29 +4,14 @@ async function getIdea(postId: number) {
     const post = await prisma.idea.findUnique({
         where: { id: postId },
         include: {
-            author: {
-                select: {
-                    name: true,
-                    email: true,
-                },
-            },
+            author: true,
             comments: {
-                select: {
-                    content: true,
-                    createdAt: true,
-                    author: {
-                        select: {
-                            name: true,
-                            imagePath: true
-                        },
-                    },
-                },
+                include: {
+                    author: true
+                }
             },
-            likes: {
-                select: {
-                    ideaId: true,
-                },
-            },
+            likes: true,
+            bookmarks: true,
         },
     });
 

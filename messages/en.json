@@ -2,6 +2,7 @@
     "action": {
         "add": "Add",
         "adding": "Adding...",
+        "back": "Back",
         "cancel": "Cancel",
         "error": "Something went wrong",
         "error_auth_user": "User not authenticated",
@@ -95,9 +96,13 @@
             "new_idea": "New idea",
             "sub_title": "Our idea-sharing platform empowers you to connect with like-minded individuals, collaborate on innovative projects, and bring your ideas to life.",
             "title": "Share Your Ideas, Inspire the World"
+        },
+        "idea": {
+            "not_found": "Idea not found"
         }
     },
     "notifications": {
+        "commenting": "commenting on your idea: ",
         "notifications": "Notifications",
         "no_notifications": "No Notifications",
         "no_notifications_sub": "You don't have any new notifications.",

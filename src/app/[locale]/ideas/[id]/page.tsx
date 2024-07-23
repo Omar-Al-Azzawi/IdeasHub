@@ -8,7 +8,8 @@ import Image from "next/image";
 import defaultImage from "@/assets/ideahub.png";
 import { IdeaContent } from "../_components/IdeaContent";
 import { JSONContent } from "@tiptap/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { use } from "react";
 
 type Props = {
     params: {
@@ -16,15 +17,14 @@ type Props = {
     };
 };
 
-export default async function IdeaPage({ params }: Props) {
+export default function IdeaPage({ params }: Props) {
     const { id } = params;
-    const ideaId = Number(id);
-    const idea = await getIdea(ideaId);
-    // const activeLocale = useLocale()
-
+    const idea = use(getIdea(Number(id)));
+    const activeLocale = useLocale()
+    const t = useTranslations()
 
     if (!idea) {
-        return <div>Idea not found</div>;
+        return <div>{t('pages.idea.not_found')}</div>;
     }
 
     const imagePath = idea.imagePath || defaultImage;
@@ -38,7 +38,7 @@ export default async function IdeaPage({ params }: Props) {
                 alt="Idea Image"
                 className="w-full h-64 object-cover rounded-lg mb-2"
             />
-            {/* <BackButton path={`/${activeLocale}/ideas`} /> */}
+            <BackButton path={`/${activeLocale}/ideas`} />
             <section className="lg:mx-40 tiptap">
                 <div className="flex flex-col">
                     <span className="text-xs">{formatDate(String(idea.createdAt))}</span>
@@ -54,7 +54,7 @@ export default async function IdeaPage({ params }: Props) {
                 </div>
                 <IdeaContent content={idea.content as JSONContent} />
             </section>
-            <NewCommentForm ideaId={String(ideaId)} />
+            <NewCommentForm idea={idea} />
             <Comments comments={idea.comments} />
         </main>
     );

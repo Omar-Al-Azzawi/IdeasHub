@@ -50,7 +50,8 @@ const LikeAction = async (ideaId: number, userId: string) => {
                     data: {
                         type: NotificationTypes.LIKE,
                         content: `${user?.name} ${t('notifications.like_idea')} ${idea.title}`,
-                        user: { connect: { id: idea.authorId } },
+                        issuer: { connect: { id: String(user?.id) } },
+                        recipient: { connect: { id: idea.authorId } },
                         idea: { connect: { id: idea.id } }
                     },
                 });

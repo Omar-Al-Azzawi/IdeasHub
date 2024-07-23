@@ -46,7 +46,8 @@ const followAction = async (followerId: string, followingId: string) => {
                 data: {
                     type: NotificationTypes.FOLLOW,
                     content: `${user?.name} ${t('notifications.following')}`,
-                    user: { connect: { id: followerId } },
+                    issuer: { connect: { id: String(user?.id) } },
+                    recipient: { connect: { id: followerId } },
                 },
             });
 
