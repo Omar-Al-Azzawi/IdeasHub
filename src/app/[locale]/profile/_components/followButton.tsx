@@ -1,22 +1,26 @@
-'use client'
+'use client';
 
 import { followAction } from "@/actions/follow";
 import { Button } from "@/components/ui/button";
+import { User } from "@/types/User";
 import { Check, Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { startTransition, useOptimistic } from "react";
 import { toast } from "sonner";
 
-type Props = {
-    user: any
-    id: string
-}
+type Follower = {
+    followerId: string;
+};
 
-const Follow = ({ user, id }: Props) => {
-    const followed = user?.followers?.find((follow: any) => Number(id) === follow.followerId);
-    const [optimisticFollow, switchOptimisticFollow] = useOptimistic(
-        followed,
-        (state) => !state
-    );
+type Props = {
+    user: User;
+    authUser?: User | null
+};
+
+const Follow = ({ user, authUser }: Props) => {
+    const t = useTranslations()
+    const followed = user?.followers?.some((follow: Follower) => follow.followerId === user.id);
+    const [optimisticFollow, setOptimisticFollow] = useOptimistic<boolean>(followed);
 
     const handleFollow = async () => {
         if (!user) {
@@ -25,13 +29,14 @@ const Follow = ({ user, id }: Props) => {
         }
 
         startTransition(() => {
-            switchOptimisticFollow("");
+            setOptimisticFollow((prev) => !prev);
         });
+
         try {
-            await followAction(id, user.id);
+            await followAction(String(user?.id), String(authUser?.id));
         } catch (err) {
             startTransition(() => {
-                switchOptimisticFollow("");
+                setOptimisticFollow((prev) => !prev);
             });
         }
     };
@@ -39,9 +44,9 @@ const Follow = ({ user, id }: Props) => {
     return (
         <Button onClick={handleFollow} className="p-0 text-teal-500" variant="ghost">
             {optimisticFollow ? <Check className="mr-1" size={14} /> : <Plus className="mr-1" size={14} />}
-            {optimisticFollow ? "Following" : "Follow"}
+            {optimisticFollow ? t('action.following') : t('action.follow')}
         </Button>
-    )
-}
+    );
+};
 
-export { Follow }
+export { Follow };

@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 const followAction = async (followerId: string, followingId: string) => {
     const timestamp = Date.now();
-    const t = await getTranslations()
+    const t = await getTranslations();
     const user = await getUser();
 
     try {
@@ -47,7 +47,7 @@ const followAction = async (followerId: string, followingId: string) => {
                     type: NotificationTypes.FOLLOW,
                     content: `${user?.name} ${t('notifications.following')}`,
                     issuer: { connect: { id: String(user?.id) } },
-                    recipient: { connect: { id: followerId } },
+                    recipient: { connect: { id: followingId } },
                 },
             });
 

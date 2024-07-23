@@ -3,10 +3,10 @@ import { Comment, Idea } from "./Idea";
 import { Like } from "./Like";
 
 export type User = {
-    id: number;
+    id: String;
     email: string;
     name?: string | null;
-    password: string;
+    password?: string | null;
     imagePath?: string;
     bio?: string;
     ideas: Idea[];

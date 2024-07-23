@@ -11,6 +11,8 @@
         "error_follow": "Failed to toggle follow status.",
         "error_like": "Failed to toggle like.",
         "error_validation": "Invalid input data!",
+        "follow": "Follow",
+        "following": "Following",
         "login": "Log in",
         "logging": "Logging...",
         "save": "Save",
@@ -99,6 +101,12 @@
         },
         "idea": {
             "not_found": "Idea not found"
+        },
+        "profile": {
+            "not_found": "User not found",
+            "followers": "Followers",
+            "following": "Following",
+            "edit": "Edit profile"
         }
     },
     "notifications": {

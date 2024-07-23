@@ -6,36 +6,38 @@
         "cancel": "Peruuta",
         "error": "Jotain meni pieleen",
         "error_auth_user": "Käyttäjä ei ole kirjautunut sisään",
-        "error_bookmark": "Kirjanmerkki epäonnistui",
+        "error_bookmark": "Kirjanmerkin lisääminen epäonnistui",
         "error_delete_idea": "Idean poistaminen epäonnistui",
         "error_follow": "Seuraamisen tilan vaihtaminen epäonnistui.",
-        "error_like": "Tykkäyksen tilan vaihtaminen epäonnistui.",
+        "error_like": "Tykkäyksen vaihtaminen epäonnistui.",
         "error_validation": "Virheelliset syöttötiedot!",
+        "follow": "Seuraa",
+        "following": "Seurataan",
         "login": "Kirjaudu sisään",
         "logging": "Kirjaudutaan...",
         "save": "Tallenna",
         "saving": "Tallennetaan...",
         "signup": "Rekisteröidy",
         "success_delete_idea": "Idea poistettu onnistuneesti",
-        "success_follow": "Seurattu onnistuneesti.",
+        "success_follow": "Seuraaminen onnistui.",
         "success_unfollow": "Seuraaminen lopetettu onnistuneesti."
     },
     "forms": {
         "add_comment": {
             "add_comment": "Lisää kommentti",
             "comment_placeholder": "Kirjoita kommenttisi tähän...",
-            "error_auth": "Sinun täytyy olla kirjautuneena kommentoidaksesi.",
+            "error_auth": "Sinun täytyy olla kirjautunut sisään kommentoidaksesi.",
             "error_comment": "Kommentin lisääminen epäonnistui.",
             "success_comment": "Kommentti lisätty onnistuneesti"
         },
         "edit_profile": {
-            "bio": "Bio",
-            "error_msg": "Profiilin muokkaus epäonnistui",
+            "bio": "Esittely",
+            "error_msg": "Profiilin muokkaaminen epäonnistui",
             "image": "Kuva",
             "name": "Nimi",
-            "success_msg": "Profiilia muokattu onnistuneesti",
+            "success_msg": "Profiilin muokkaaminen onnistui",
             "title": "Muokkaa profiiliasi",
-            "validation_err": "Varmennus epäonnistui"
+            "validation_err": "Validointi epäonnistui"
         },
         "login": {
             "do_not_have_account": "Eikö sinulla ole tiliä",
@@ -46,9 +48,9 @@
             "invalid_password": "Virheellinen salasana!",
             "password": "Salasana",
             "password_placeholder": "Kirjoita salasanasi",
-            "success_msg": "Kirjauduttu onnistuneesti",
+            "success_msg": "Kirjautuminen onnistui",
             "title": "Kirjaudu tilillesi",
-            "user_not_found": "Käyttäjää ei löydy"
+            "user_not_found": "käyttäjää ei löydy"
         },
         "idea": {
             "create_title": "Kirjoita ideasi",
@@ -56,7 +58,7 @@
             "create_success_msg": "Idea luotu onnistuneesti",
             "edit_title": "Muokkaa ideaasi",
             "edit_error_msg": "Idean muokkaaminen epäonnistui",
-            "edit_success_msg": "Ideaa muokattu onnistuneesti",
+            "edit_success_msg": "Idea muokattu onnistuneesti",
             "image": "Kuva",
             "publish": "Julkaise",
             "tags": "Tunnisteet",
@@ -65,13 +67,13 @@
         "signup": {
             "email": "Sähköposti",
             "email_placeholder": "Kirjoita sähköpostiosoitteesi",
-            "error_msg": "Rekisteröityminen epäonnistui.",
+            "error_msg": "Rekisteröinti epäonnistui.",
             "existingUser": "Käyttäjä on jo olemassa",
             "name": "Nimi",
             "password": "Salasana",
             "password_placeholder": "Kirjoita salasanasi",
-            "success_msg": "Rekisteröidytty onnistuneesti",
-            "title": "Rekisteröidy luodaksesi tilin",
+            "success_msg": "Rekisteröinti onnistui",
+            "title": "Luo tili",
             "you_have_account": "Sinulla on jo tili"
         }
     },
@@ -79,26 +81,32 @@
         "bookmarks": "Kirjanmerkit",
         "home": "Koti",
         "ideas": "Ideat",
-        "login": "Kirjaudu sisään",
+        "login": "Kirjaudu",
         "logout": "Kirjaudu ulos",
-        "my_account": "Tilini",
+        "my_account": "Oma tilini",
         "profile": "Profiili",
         "signup": "Rekisteröidy"
     },
     "pages": {
         "bookmarks": {
-            "empty_sub_title": "Palaa ideoihisi ja lisää kirjanmerkki ideoihin, jotka haluat säilyttää tai tarkistaa myöhemmin. Jokainen lisäämäsi idea tallennetaan tänne.",
+            "empty_sub_title": "Palaa ideoihisi ja lisää kirjanmerkki ideoille, jotka haluat pitää tai tarkistaa myöhemmin. Jokainen kirjanmerkitsemäsi idea tallennetaan tänne.",
             "empty_title": "Kirjanmerkkilistasi on tyhjä.",
-            "title": "Kirjanmerkkini"
+            "title": "Omat kirjanmerkit"
         },
         "home": {
             "learn_more": "Lue lisää",
             "new_idea": "Uusi idea",
-            "sub_title": "Ideoiden jakamisalustamme avulla voit yhdistyä samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja toteuttaa ideoitasi.",
+            "sub_title": "Ideoiden jakamisalustamme avulla voit yhdistyä samanhenkisten ihmisten kanssa, tehdä yhteistyötä innovatiivisissa projekteissa ja toteuttaa ideasi.",
             "title": "Jaa ideasi, inspiroi maailmaa"
         },
         "idea": {
-            "not_found": "Ideaa ei löydy"
+            "not_found": "Ideaa ei löytynyt"
+        },
+        "profile": {
+            "not_found": "Käyttäjää ei löytynyt",
+            "followers": "Seuraajat",
+            "following": "Seurataan",
+            "edit": "Muokkaa profiilia"
         }
     },
     "notifications": {
@@ -108,6 +116,6 @@
         "no_notifications_sub": "Sinulla ei ole uusia ilmoituksia.",
         "like_idea": "tykkäsi ideastasi:",
         "mark_all": "Merkitse kaikki luetuiksi",
-        "following": "alkoi seurata sinua"
+        "following": "aloitti seuraamisen sinua"
     }
 }

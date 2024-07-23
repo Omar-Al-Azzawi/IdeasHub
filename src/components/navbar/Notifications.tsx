@@ -24,8 +24,6 @@ const Notification = ({ user }: Props) => {
     const notifications = use(getNotifications(String(user.id)))
     const unReadNotifications = notifications.filter((notification) => notification.readAt === null)
 
-    console.log({ notifications })
-
     return (
         <div className="mx-6 mt-2">
             <DropdownMenu>
@@ -47,7 +45,7 @@ const Notification = ({ user }: Props) => {
                             {notifications.map((notification) => {
                                 return (
                                     <div className="grid gap-2" key={notification.id}>
-                                        {notification.type === NotificationTypes.LIKE || NotificationTypes.COMMENT ?
+                                        {notification.type === NotificationTypes.LIKE || notification.type === NotificationTypes.COMMENT ?
                                             <Link href={`/${activeLocale}/ideas/${notification.ideaId}`}>
                                                 <div className="flex items-center justify-between p-3 rounded-md hover:bg-accent hover:text-accent-foreground cursor-pointer">
                                                     <div className="flex-1 space-y-1">
@@ -75,6 +73,7 @@ const Notification = ({ user }: Props) => {
                                     </div>
                                 )
                             })}
+
                         </ScrollArea>
                         :
                         <div className="p-4 text-md">
