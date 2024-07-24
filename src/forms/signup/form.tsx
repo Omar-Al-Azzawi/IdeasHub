@@ -18,6 +18,14 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { type SignupFormData, SignupSchema } from "./schema";
 import { useLocale, useTranslations } from "next-intl";
+import { useFormState } from "react-dom";
+import { useToastMessage } from "@/hooks/useToastMsg";
+import { useRedirect } from "@/hooks/useRedirect";
+
+const initialState = {
+    success: true,
+    message: '',
+}
 
 const SignupForm = () => {
     const router = useRouter();
@@ -33,16 +41,10 @@ const SignupForm = () => {
         },
     });
 
-    async function onSubmit(values: SignupFormData) {
-        const result = await signupAction(values);
-        if (result.success) {
-            form.reset();
-            toast(result.message);
-            router.push(`/${localActive}/login`);
-        } else {
-            toast.error(result.message);
-        }
-    }
+    const [state, formAction] = useFormState(signupAction, initialState)
+
+    useToastMessage(state);
+    useRedirect(state);
 
     return (
         <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-18 h-[70vh]">
@@ -52,7 +54,7 @@ const SignupForm = () => {
                 </h2>
             </div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+                <form action={formAction} className="space-y-2">
                     <FormField
                         control={form.control}
                         name="name"

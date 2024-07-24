@@ -12,7 +12,7 @@ const GoogleOAuthButton = () => {
     const t = useTranslations()
 
     return (
-        <Button onClick={async () => {
+        <Button className='w-full' onClick={async () => {
             const res = await getGoogleOauth()
 
             if (res.url) {

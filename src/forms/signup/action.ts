@@ -2,30 +2,42 @@
 
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { SignupSchema, type SignupFormData } from "./schema";
+import { SignupSchema } from "./schema";
 import { Argon2id } from 'oslo/password'
 import { lucia } from "@/lib/lucia"
 import { generateId } from 'lucia';
 import { cookies } from "next/headers"
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 const prisma = new PrismaClient();
 
-const signupAction = async (signupFormData: SignupFormData) => {
+const signupAction = async (
+    prevState: {
+        success: boolean;
+        message: string;
+    },
+    formData: FormData
+): Promise<{ success: boolean; message: string; timestamp: number; data?: { redirect: string } }> => {
     const t = await getTranslations()
+    const activeLocale = await getLocale()
+    const timestamp = Date.now();
 
     try {
-        const result = SignupSchema.safeParse(signupFormData);
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
 
-        if (!result.success) {
-            return { success: false, message: t("Validation failed") };
+        const data = {
+            name,
+            email,
+            password
         }
 
-        const { name, email, password } = signupFormData as {
-            name: string;
-            email: string;
-            password: string;
-        };
+        const result = SignupSchema.safeParse(data);
+
+        if (!result.success) {
+            return { success: false, message: t("Validation failed"), timestamp };
+        }
 
         const existingUser = await prisma.user.findUnique({
             where: {
@@ -34,7 +46,7 @@ const signupAction = async (signupFormData: SignupFormData) => {
         })
 
         if (existingUser) {
-            return { error: t('forms.signup.existingUser'), success: false }
+            return { success: false, message: t('forms.signup.existingUser'), timestamp }
         }
 
         const userId = generateId(15);
@@ -53,13 +65,23 @@ const signupAction = async (signupFormData: SignupFormData) => {
         const sessionCookie = await lucia.createSessionCookie(session.id)
         cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 
+        const redirect = `/${activeLocale}/login`;
+
         revalidatePath("/");
-        return { success: true, message: t("forms.signup.success_msg") };
+        return {
+            success: true,
+            message: t("forms.signup.success_msg"),
+            timestamp,
+            data: {
+                redirect
+            }
+        };
     } catch (error) {
         console.error("Signup failed:", error);
         return {
             success: false,
             message: t("forms.signup.error_msg"),
+            timestamp
         };
     }
 };

@@ -15,10 +15,16 @@ import Link from "next/link";
 import SubmitButton from "@/components/SubmitButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type LoginFormData, LoginSchema } from "./schema";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import GoogleOAuthButton from "@/components/GoogleOAuthButton";
+import { useToastMessage } from "@/hooks/useToastMsg";
+import { useRedirect } from "@/hooks/useRedirect";
+import { useFormState } from "react-dom";
+
+const initialState = {
+    success: true,
+    message: '',
+}
 
 const LoginForm = () => {
     const localActive = useLocale();
@@ -31,18 +37,11 @@ const LoginForm = () => {
             password: "",
         },
     });
-    const router = useRouter();
 
-    async function onSubmit(values: LoginFormData) {
-        const result = await loginAction(values);
-        if (result.success) {
-            form.reset();
-            toast(result.message);
-            router.push("/");
-        } else {
-            toast.error(result.message);
-        }
-    }
+    const [state, formAction] = useFormState(loginAction, initialState)
+
+    useToastMessage(state);
+    useRedirect(state);
 
     return (
         <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-18 h-[70vh]">
@@ -52,7 +51,7 @@ const LoginForm = () => {
                 </h2>
             </div>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+                <form action={formAction} className="space-y-2">
                     <FormField
                         control={form.control}
                         name="email"
