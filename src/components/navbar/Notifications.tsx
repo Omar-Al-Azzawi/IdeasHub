@@ -10,17 +10,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { NotificationTypes } from "@/Constant/Index";
 import { markAllNotificationsRead, notificationAction } from "@/actions/notification";
 import { useRouter } from 'next/navigation';
-
-type Notifications = {
-    id: number;
-    type: string;
-    content: string | null;
-    recipientId: string;
-    issuerId: string;
-    ideaId: number | null;
-    createdAt: Date;
-    readAt: Date | null;
-}
+import { Notifications } from "@/types/Notification";
 
 type Props = {
     user: User | null;
