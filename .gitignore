@@ -39,3 +39,7 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+#PW
+/e2e/storageState.json
+/e2e/test-results

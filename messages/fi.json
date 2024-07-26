@@ -50,7 +50,8 @@
             "password_placeholder": "Kirjoita salasanasi",
             "success_msg": "Kirjautuminen onnistui",
             "title": "Kirjaudu tilillesi",
-            "user_not_found": "käyttäjää ei löydy"
+            "user_not_found": "käyttäjää ei löydy",
+            "or": "Tai"
         },
         "idea": {
             "create_title": "Kirjoita ideasi",

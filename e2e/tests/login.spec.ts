@@ -11,7 +11,7 @@ const credentials = {
     password: process.env.E2E_PASSWORD || '',
 }
 
-test.describe.only('login page', async () => {
+test.describe('login page', async () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('/en/login')
     })

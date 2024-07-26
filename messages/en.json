@@ -50,7 +50,8 @@
             "password_placeholder": "Write your password",
             "success_msg": "Logged in successfully",
             "title": "Sign in to your account",
-            "user_not_found": "user_not_found"
+            "user_not_found": "user_not_found",
+            "or": "Or"
         },
         "idea": {
             "create_title": "Write your idea",
