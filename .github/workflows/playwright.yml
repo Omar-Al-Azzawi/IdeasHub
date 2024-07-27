@@ -13,12 +13,12 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+    - name: cd
+      run: cd /test/e2e
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: cd
-      run: cd /e2e
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
