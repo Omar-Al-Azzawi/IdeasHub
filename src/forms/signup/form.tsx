@@ -60,7 +60,7 @@ const SignupForm = () => {
                         name="name"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-white">
+                                <FormLabel>
                                     {t('forms.signup.name')}
                                 </FormLabel>
                                 <Input placeholder="John Doe" {...field} />
@@ -73,7 +73,7 @@ const SignupForm = () => {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-white">
+                                <FormLabel>
                                     {t('forms.signup.email')}
                                 </FormLabel>
                                 <Input placeholder="example@email.com" {...field} />
@@ -86,7 +86,7 @@ const SignupForm = () => {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-white">
+                                <FormLabel>
                                     {t('forms.signup.password')}
                                 </FormLabel>
                                 <Input placeholder="abcd1234%" type="password" {...field} />
